@@ -1,13 +1,20 @@
+# nodejs already exist in this image
 FROM node:20
 
-WORKDIR /usr/app
+# create folder + cd folder
+WORKDIR /usr/app 
 
-COPY package.json .
+# copy nodejs configuration file
+COPY ./package.json .
 
+# install express based on package.json file
 RUN npm install
 
+# copy the application structure
 COPY . .
 
+# let the user know the exatclly port
 EXPOSE 3000
 
+# start the application
 CMD ["node", "server.js"]
