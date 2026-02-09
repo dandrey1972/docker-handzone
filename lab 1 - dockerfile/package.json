@@ -1,0 +1,25 @@
+{
+  "name": "docker-handzone",
+  "version": "1.0.0",
+  "description": "Created",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dandrey1972/docker-handzone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dandrey1972/docker-handzone/issues"
+  },
+  "homepage": "https://github.com/dandrey1972/docker-handzone#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
