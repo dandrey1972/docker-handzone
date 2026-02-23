@@ -34,9 +34,17 @@ services:
       DB_NAME: mydb
     depends_on:
       - db
-    volumes:
-      - ./app:/usr/src/app          # bind mount кода
-      - /usr/src/app/node_modules   # анонимный volume защищает node_modules
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8080:80"              # UI на localhost:8080
+    environment:
+      PMA_HOST: db             # имя сервиса MySQL
+      PMA_USER: user
+      PMA_PASSWORD: userpass
+    depends_on:
+      - db
 
 volumes:
   db_data:                       # named volume для MySQL
@@ -139,6 +147,8 @@ docker-compose up -d
 # Проверка
 docker-compose ps
 curl http://localhost:3000
+Открой браузер: http://localhost:8080
+Логин: user / userpass
 ```
 
 # Шаг 7: Git
