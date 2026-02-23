@@ -1,10 +1,13 @@
-Структура
+# Структура
 bash
+```
 mkdir lab5 && cd lab5
 mkdir app
+```
 
-Шаг 1: docker-compose.yml
+# Шаг 1: docker-compose.yml
 text
+```
 cat > docker-compose.yml << 'EOF'
 services:
   db:
@@ -38,9 +41,11 @@ services:
 volumes:
   db_data:                       # named volume для MySQL
 EOF
+```
 
-Шаг 2: Node приложение
+# Шаг 2: Node приложение
 bash
+```
 cat > app/package.json << 'EOF'
 {
   "name": "lab5",
@@ -51,9 +56,11 @@ cat > app/package.json << 'EOF'
   }
 }
 EOF
+```
 
-Шаг 3. index.js
+# Шаг 3. index.js
 bash
+```
 cat > app/index.js << 'EOF'
 const express = require('express');
 const mysql = require('mysql2');
@@ -90,9 +97,11 @@ function connectWithRetry() {
 
 connectWithRetry();
 EOF
+```
 
-Шаг 4: Dockerfile
+# Шаг 4: Dockerfile
 bash
+```
 cat > app/Dockerfile << 'EOF'
 FROM node:18-alpine          
 # alpine = минимальный образ (~50MB)
@@ -115,9 +124,11 @@ EXPOSE 3000
 CMD ["node", "index.js"]     
 # команда запуска
 EOF
+```
 
-Шаги 5-6: Build + Test
+# Шаги 5-6: Build + Test
 bash
+```
 # Шаг 5: собрать с тегом
 docker-compose build
 # или: docker build -t node_mysql:v0.1 ./app
@@ -128,12 +139,15 @@ docker-compose up -d
 # Проверка
 docker-compose ps
 curl http://localhost:3000
+```
 
-Шаг 7: Git
+# Шаг 7: Git
 bash
+```
 git init
 echo "node_modules/" > .gitignore
 git add .
 git commit -m "Lab5: docker-compose MySQL + Node"
 git remote add origin <URL>
 git push origin main
+```
