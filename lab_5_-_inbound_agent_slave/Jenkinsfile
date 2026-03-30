@@ -1,0 +1,25 @@
+pipeline {
+    agent { label "dind-agent"}
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB_CRED')
+    }
+    
+    stages {
+        stage('docker verification') {
+            steps {
+                sh "docker -v"
+            }
+        }
+        stage('docker containers') {
+            steps {
+                sh "docker ps"
+            }
+        }
+        stage('docker login') {
+            steps {
+                sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login --username ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+            }
+        }
+    }
+}

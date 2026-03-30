@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Echo') {
+            steps {
+                echo "Echoing a message to demonstrate Jenkins pipeline execution."
+            }
+        }
+
+    }
+}
