@@ -6,6 +6,7 @@ pipeline {
         stage('Echo') {
             steps {
                 echo "Echoing a message to demonstrate Jenkins pipeline execution."
+                echo "Step 2"
             }
         }
 
